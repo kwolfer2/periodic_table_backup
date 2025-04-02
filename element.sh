@@ -1,5 +1,5 @@
 #!/bin/bash
-if [[ -z $1 ]]
+if [[ -z $1 ]];
 then
 echo -e "\nPlease provide an element as an argument."
 exit
@@ -17,9 +17,10 @@ elif [[ $INPUT =~ ^[A-Za-z]{1,2}$ ]]; then
 QUERY_INPUT="LOWER(e.symbol) = LOWER('$INPUT')"
 #search by name
 else QUERY_INPUT="LOWER(e.name) = LOWER('$INPUT')"
+fi
 
 #run psql query and insert all relevant variable into $ELEMENT_{}
-RESULT=$(psql --username=postgres --dbname=periodic_table --tuples-only --no-align -c "
+RESULT=$(psql --username=freecodecamp --dbname=periodic_table --tuples-only --no-align -c "
 SELECT e.atomic_number,
 e.symbol,
 e.name,
@@ -38,4 +39,3 @@ fi
 
 IFS="|" read -r ELEMENT_ATOMIC_NUM ELEMENT_SYMBOL ELEMENT_NAME ELEMENT_TYPE ELEMENT_ATOMIC_MASS ELEMENT_MELT ELEMENT_BOIL <<< "$RESULT"
 echo "The element with atomic number $ELEMENT_ATOMIC_NUM is $ELEMENT_NAME ($ELEMENT_SYMBOL). It's a $ELEMENT_TYPE, with a mass of $ELEMENT_ATOMIC_MASS amu. $ELEMENT_NAME has a melting point of $ELEMENT_MELT celsius and a boiling point of $ELEMENT_BOIL celsius."
-fi
