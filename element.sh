@@ -1,13 +1,13 @@
 #!/bin/bash
 if [[ -z $1 ]];
 then
-echo -e "\nPlease provide an element as an argument."
+echo -e "Please provide an element as an argument."
 exit
 fi
 
 INPUT=$1
 # confirm input
-echo -e "\nYou have entered $INPUT"
+# echo -e "\nYou have entered $INPUT"
 
 #check if atomic number
 if [[ $INPUT =~ ^[0-9]+$ ]]; then
@@ -33,7 +33,7 @@ WHERE $QUERY_INPUT;"
 )
 
 if [[ -z $RESULT ]]; then
-echo -e "\nI could not find that element in the database."
+echo -e "I could not find that element in the database."
 exit
 fi
 
