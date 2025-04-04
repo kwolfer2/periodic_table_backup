@@ -24,7 +24,7 @@ RESULT=$(psql --username=freecodecamp --dbname=periodic_table --tuples-only --no
 SELECT e.atomic_number,
 e.symbol,
 e.name,
-p.type,
+p.element_type,
 p.atomic_mass,
 p.melting_point_celsius,
 p.boiling_point_celsius
@@ -37,5 +37,5 @@ echo -e "I could not find that element in the database."
 exit
 fi
 
-IFS="|" read -r ELEMENT_ATOMIC_NUM ELEMENT_SYMBOL ELEMENT_NAME ELEMENT_TYPE ELEMENT_ATOMIC_MASS ELEMENT_MELT ELEMENT_BOIL <<< "$RESULT"
-echo "The element with atomic number $ELEMENT_ATOMIC_NUM is $ELEMENT_NAME ($ELEMENT_SYMBOL). It's a $ELEMENT_TYPE, with a mass of $ELEMENT_ATOMIC_MASS amu. $ELEMENT_NAME has a melting point of $ELEMENT_MELT celsius and a boiling point of $ELEMENT_BOIL celsius."
+IFS="|" read -r ELEMENT_ATOMIC_NUM ELEMENT_SYMBOL ELEMENT_NAME ELEMENT_ELEMENT_TYPE ELEMENT_ATOMIC_MASS ELEMENT_MELT ELEMENT_BOIL <<< "$RESULT"
+echo "The element with atomic number $ELEMENT_ATOMIC_NUM is $ELEMENT_NAME ($ELEMENT_SYMBOL). It's a $ELEMENT_ELEMENT_TYPE, with a mass of $ELEMENT_ATOMIC_MASS amu. $ELEMENT_NAME has a melting point of $ELEMENT_MELT celsius and a boiling point of $ELEMENT_BOIL celsius."
